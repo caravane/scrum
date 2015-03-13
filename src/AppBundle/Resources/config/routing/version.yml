@@ -1,0 +1,30 @@
+version:
+    path:     /
+    defaults: { _controller: "AppBundle:Version:index" }
+
+version_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Version:show" }
+
+version_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Version:new" }
+
+version_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Version:create" }
+    methods:  POST
+
+version_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Version:edit" }
+
+version_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Version:update" }
+    methods:  [POST, PUT]
+
+version_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Version:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,11 @@
+{% javascripts
+			filter='?yui_js'
+			output='js/compiled/required.js'
+			'%kernel.root_dir%/../vendor/components/jquery/jquery.js'
+
+			'%kernel.root_dir%/../vendor/components/bootstrap/js/bootstrap.js'
+			'%kernel.root_dir%/../vendor/voidberg/html5sortable/dist/html.sortable.js'
+			'%kernel.root_dir%/../app/Resources/public/js/main.js'
+		%}
+			<script type="text/javascript"  src="{{ asset_url }}" ></script>
+		{% endjavascripts %}

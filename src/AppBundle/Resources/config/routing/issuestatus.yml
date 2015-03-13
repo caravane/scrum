@@ -1,0 +1,30 @@
+issuestatus:
+    path:     /
+    defaults: { _controller: "AppBundle:IssueStatus:index" }
+
+issuestatus_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:IssueStatus:show" }
+
+issuestatus_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:IssueStatus:new" }
+
+issuestatus_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:IssueStatus:create" }
+    methods:  POST
+
+issuestatus_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:IssueStatus:edit" }
+
+issuestatus_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:IssueStatus:update" }
+    methods:  [POST, PUT]
+
+issuestatus_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:IssueStatus:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,68 @@
+{% extends '::base.html.twig' %}
+
+{% import _self as mac %}
+
+{% block body -%}
+    <div class="row">
+        <div class="col-md-10">
+            <h1>{{project.name}}</h1>
+        </div>
+        <div class="col-md-2">
+             <a class="btn" href="{{ path('project_edit', { 'id': project.id }) }}"> Edit </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-3">
+                    {{ mac.col(project, 'todo', 'To do') }}
+                </div>
+                <div class="col-md-3">
+                    {{ mac.col(project, 'inprogress', 'In progress') }}
+                </div>
+                <div class="col-md-3">
+                   {{ mac.col(project, 'inqualification', 'In qualification') }}
+                </div>
+                <div class="col-md-3">
+                   {{ mac.col(project, 'done', 'Done') }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if issue is defined %}
+
+                    {% else %}
+                        <div class="alert alert-info">
+                            {{"No issue selected"|trans}}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+     
+{% endblock %}
+
+
+
+{% macro col(project, type, label) %}
+    <div class="col">
+        <h3 class="status"><span class="count">{{project.issues[type] is defined? (project.issues[type]|length):'0'}}</span> {{label}}</h3>
+        <div class="{{type}}  status" data-status="{{type}}">
+            {% if project.issues[type] is defined %}
+                {% for issue in project.issues[type] %}
+                     <li class="card {{issue.type.shortname}}" data-name="{{issue.name}}" data-id="{{issue.id}}" >
+                        <img src="" class="avatar" />
+                        <i class="fa fa-{{issue.type.shortname}}"></i> <a href="#">{{issue.name}}</a><br/>
+                        <i class="fa fa-{{issue.priority.shortname}}"></i>  {{issue.summary}}
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </div>
+     </div>
+{% endmacro %}

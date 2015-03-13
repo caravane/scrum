@@ -1,0 +1,159 @@
+@import "bootstrap/variables.less";
+@import "../../../../vendor/components/bootstrap/less/mixins.less";
+
+
+
+
+
+
+#main {
+	margin-top: 50px;
+}
+
+
+
+.col {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	height: 100%;
+}
+
+
+.col .status {
+	background: #ededed;
+	padding:5px 0 20px 0 ;
+
+	.card {
+		list-style: none;
+		padding:5px;
+		margin-bottom:1px;
+		border: 1px solid #cccccc;
+		background: #ffffff;
+		min-height: 80px;
+		border-left: 5px solid #cccccc;
+		cursor: move;
+		.avatar {
+			float:right;
+			max-width: 40px;
+		}
+		.content {
+			margin-right:50px;
+		}
+	}
+	.bug {
+		border-left: 5px solid red;
+	}
+	.fa.fa-bug {
+		color: red;
+		border: none;
+	}
+
+	.task {
+		border-left: 5px solid green;
+	}
+	.fa-task:before {
+		content: "\f0ae";
+	}
+	.fa.fa-task {
+		
+		border: none;
+		color: green;
+	}
+
+	.improvement {
+		border-left: 5px solid orange;
+	}
+	.fa.fa-improvement:before {
+		content: "\f148";
+	}
+	.fa.fa-improvement {
+		border: none;
+		color: orange;
+	}
+
+	.newfeature {
+		border-left: 5px solid blue;
+	}
+	.fa.fa-newfeature:before {
+		content: "\f06b";
+	}
+	.fa.fa-newfeature {
+		border: none;
+		color: blue;
+	}
+
+
+	.highlight {
+		background: #FEE25F;
+	}
+	.sortable-placeholder {
+		border: 1px dashed #CCC;
+		background: #ededed;
+		min-height: 80px;
+	}
+	.sortable-dragging {
+		
+
+	}
+}
+
+h3.status {
+	font-size:1em;
+}
+
+
+
+
+
+/*
+
+		#demos section {
+			overflow: hidden;
+		}
+		.sortable {
+			width: 310px;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		.sortable.grid {
+			overflow: hidden;
+		}
+		.sortable li {
+			list-style: none;
+			border: 1px solid #CCC;
+			background: #F6F6F6;
+			color: #1C94C4;
+			margin: 5px;
+			padding: 5px;
+			height: 22px;
+		}
+		.sortable.grid li {
+			line-height: 80px;
+			float: left;
+			width: 80px;
+			height: 80px;
+			text-align: center;
+		}
+		.handle {
+			cursor: move;
+		}
+		.sortable.connected {
+			width: 200px;
+			min-height: 100px;
+			float: left;
+		}
+		li.disabled {
+			opacity: 0.5;
+		}
+		li.highlight {
+			background: #FEE25F;
+		}
+		li.sortable-placeholder {
+			border: 1px dashed #CCC;
+			background: none;
+		}
+		*/

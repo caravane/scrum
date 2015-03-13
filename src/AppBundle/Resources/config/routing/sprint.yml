@@ -1,0 +1,30 @@
+sprint:
+    path:     /
+    defaults: { _controller: "AppBundle:Sprint:index" }
+
+sprint_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Sprint:show" }
+
+sprint_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Sprint:new" }
+
+sprint_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Sprint:create" }
+    methods:  POST
+
+sprint_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Sprint:edit" }
+
+sprint_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Sprint:update" }
+    methods:  [POST, PUT]
+
+sprint_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Sprint:delete" }
+    methods:  [POST, DELETE]

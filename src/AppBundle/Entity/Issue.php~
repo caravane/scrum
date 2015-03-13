@@ -1,0 +1,158 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Issue
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\IssueRepository")
+ */
+class Issue
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Project", inversedBy="issues")
+     */
+    private $project;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\IssueStatus")
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\IssueType")
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="summary", type="string", length=255)
+     */
+    private $summary;
+
+     /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Priority", inversedBy="issues")
+     */
+    private $priority;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="due_date", type="datetime", nullable=true )
+     */
+    private $dueDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="component", type="string", length=255, nullable=true )
+     */
+    private $component;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", mappedBy="issue_version")
+     */
+    private $version;
+
+   /**
+     * @var string
+     *
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", mappedBy="issue_fixVersion")
+     */
+    private $fixVersion;
+
+    /**
+     * @var string
+     *
+     ** @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User")
+     */
+    private $assignee;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User")
+     */
+    private $reporter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="environment", type="string", length=255, nullable=true )
+     */
+    private $environment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true )
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="original_estimate", type="string", length=255, nullable=true )
+     */
+    private $original_estimate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="remaining_estimate", type="string", length=255, nullable=true )
+     */
+    private $remaining_estimate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="labels", type="string", length=255, nullable=true )
+     */
+    private $labels;
+
+    /**
+     * @var string
+     *
+      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Epic")
+     */
+    private $epic;
+
+    /**
+     * @var string
+     *
+      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Sprint")
+     */
+    private $sprint;
+
+    
+
+    public function getName() {
+        return $this->project->getShortname()."-".$this->getId();
+    }
+
+
+    
+}

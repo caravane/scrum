@@ -1,0 +1,37 @@
+issue:
+    path:     /
+    defaults: { _controller: "AppBundle:Issue:index" }
+
+issue_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Issue:show" }
+
+issue_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Issue:new" }
+
+issue_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Issue:create" }
+    methods:  POST
+
+issue_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Issue:edit" }
+
+issue_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Issue:update" }
+    methods:  [POST, PUT]
+
+issue_reorder:
+    path:     /{id}/reorder/{status}
+    defaults: { _controller: "AppBundle:Issue:reorder" }
+    methods:  [POST, PUT]
+    options:
+        expose: true
+
+issue_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Issue:delete" }
+    methods:  [POST, DELETE]

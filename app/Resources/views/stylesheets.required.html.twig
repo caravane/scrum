@@ -1,0 +1,9 @@
+{% stylesheets
+		filter='less,?yui_css'
+		output='css/compiled/main.css'
+		'%kernel.root_dir%/../app/Resources/public/less/bootstrap/bootstrap.less'
+		'%kernel.root_dir%/../vendor/components/font-awesome/css/font-awesome.css'
+		'%kernel.root_dir%/../app/Resources/public/less/main.less'
+%}
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+{% endstylesheets %}

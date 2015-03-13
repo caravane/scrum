@@ -1,0 +1,30 @@
+epic:
+    path:     /
+    defaults: { _controller: "AppBundle:Epic:index" }
+
+epic_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Epic:show" }
+
+epic_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Epic:new" }
+
+epic_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Epic:create" }
+    methods:  POST
+
+epic_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Epic:edit" }
+
+epic_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Epic:update" }
+    methods:  [POST, PUT]
+
+epic_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Epic:delete" }
+    methods:  [POST, DELETE]

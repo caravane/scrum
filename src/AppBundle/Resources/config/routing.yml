@@ -1,0 +1,32 @@
+app_priority:
+    resource: "@AppBundle/Resources/config/routing/priority.yml"
+    prefix:   /priority
+
+app_issuestatus:
+    resource: "@AppBundle/Resources/config/routing/issuestatus.yml"
+    prefix:   /issuestatus
+
+app_issue:
+    resource: "@AppBundle/Resources/config/routing/issue.yml"
+    prefix:   /issue
+
+app_issuetype:
+    resource: "@AppBundle/Resources/config/routing/issuetype.yml"
+    prefix:   /issuetype
+
+app_sprint:
+    resource: "@AppBundle/Resources/config/routing/sprint.yml"
+    prefix:   /sprint
+
+app_epic:
+    resource: "@AppBundle/Resources/config/routing/epic.yml"
+    prefix:   /epic
+
+app_version:
+    resource: "@AppBundle/Resources/config/routing/version.yml"
+    prefix:   /version
+
+app_project:
+    resource: "@AppBundle/Resources/config/routing/project.yml"
+    prefix:   /project
+
