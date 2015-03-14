@@ -38,7 +38,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true )
      */
     private $description;
 
@@ -62,7 +62,7 @@ class Project
      */
     private $issues;
 
-   
+
 
     public function __toString() {
         return $this->name;
@@ -93,7 +93,7 @@ class Project
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -116,7 +116,7 @@ class Project
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -139,7 +139,7 @@ class Project
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -162,7 +162,7 @@ class Project
     /**
      * Get leader
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getLeader()
     {
@@ -195,7 +195,7 @@ class Project
     /**
      * Get user
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUser()
     {
@@ -228,7 +228,7 @@ class Project
     /**
      * Get issues
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIssues()
     {
@@ -255,7 +255,7 @@ class Project
     /**
      * Get shortname
      *
-     * @return string 
+     * @return string
      */
     public function getShortname()
     {

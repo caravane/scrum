@@ -22,6 +22,7 @@ class IssueType extends AbstractType
             ))
             ->add('priority','entity',array(
                 'class'=>'AppBundle:Priority',
+                'data'=>'major',
                 'required'=>true
             ))
             ->add('dueDate')
@@ -55,7 +56,7 @@ class IssueType extends AbstractType
             ->add('sprint')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

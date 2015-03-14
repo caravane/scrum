@@ -30,3 +30,10 @@ app_project:
     resource: "@AppBundle/Resources/config/routing/project.yml"
     prefix:   /project
 
+app_settings:
+    resource: "@AppBundle/Resources/config/routing/app.yml"
+    prefix:   /app
+
+app_homepage:
+    path:   /
+    defaults:  { _controller: AppBundle:Default:index }

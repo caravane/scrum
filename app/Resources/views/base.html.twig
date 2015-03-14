@@ -34,17 +34,22 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                {% for project in app.user.project %}
-                    <li><a href="{{path('project_show', {'id':project.id})}}">{{project.name}}</a></li>
-                {% endfor %}
+                {% if app.user.project is defined %}
+                  {% for project in app.user.project %}
+                      <li><a href="{{path('project_show', {'id':project.id})}}">{{project.name}}</a></li>
+                  {% endfor %}
+                {% endif %}
                 <li class="divider"></li>
                 <li><a href="{{path('project_new')}}">{{"New project"|trans}}</a></li>
               </ul>
             </li>
+             {% if app.user.project is defined %}
             <li>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#issueModal">
+              <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#issueModal" {{app.user.project|length>0?'':'disabled'}} >
                 {{"Issue"|trans}}
               </button>
+            </li>
+          {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -56,7 +61,7 @@
     </div>
 
 
-
+{% if app.user.project is defined %}
     <div class="modal fade" id="issueModal" tabindex="-1" role="dialog" aria-labelledby="issueModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -70,12 +75,12 @@
                {{ render(controller('AppBundle:Issue:new')) }}
           </div>
           <div class="modal-footer">
-           
+
           </div>
         </div>
       </div>
     </div>
-
+{% endif %}
     {% block javascripts %}
         {% include "javascripts.app.html.twig" %}
     {% endblock javascripts %}
