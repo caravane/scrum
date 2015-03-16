@@ -73,14 +73,24 @@ class Issue
     /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", mappedBy="issue_version")
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", inversedBy="issue_version")
+     * @ORM\JoinTable(
+     *     name="issue_version", 
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="version_id", referencedColumnName="id")}
+     * )
      */
     private $version;
 
    /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", mappedBy="issue_fixVersion")
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", inversedBy="issue_fixVersion")
+     * @ORM\JoinTable(
+     *     name="issue_fixversion", 
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="version_id", referencedColumnName="id")}
+     * )
      */
     private $fixVersion;
 
@@ -154,8 +164,7 @@ class Issue
     }
 
 
-    
-    /**
+     /**
      * Constructor
      */
     public function __construct()
@@ -163,6 +172,7 @@ class Issue
         $this->version = new \Doctrine\Common\Collections\ArrayCollection();
         $this->fixVersion = new \Doctrine\Common\Collections\ArrayCollection();
     }
+   
 
     /**
      * Get id
@@ -607,4 +617,15 @@ class Issue
     {
         return $this->sprint;
     }
+
+
+
+    public function getRemaining() {
+        if($this->remaining_estimate) {
+            return $this->remaining_estimate;
+        }
+        return "Unestimated";
+    }
+   
+
 }

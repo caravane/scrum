@@ -7,43 +7,43 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ entity.id }}</td>
+                <td>{{ issue.id }}</td>
             </tr>
             <tr>
                 <th>Summary</th>
-                <td>{{ entity.summary }}</td>
+                <td>{{ issue.summary }}</td>
             </tr>
             <tr>
                 <th>Priority</th>
-                <td>{{ entity.priority }}</td>
+                <td>{{ issue.priority }}</td>
             </tr>
             <tr>
                 <th>Duedate</th>
-                <td>{{ entity.dueDate|date('Y-m-d H:i:s') }}</td>
+                <td>{{ issue.dueDate|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
                 <th>Component</th>
-                <td>{{ entity.component }}</td>
+                <td>{{ issue.component }}</td>
             </tr>
             <tr>
                 <th>Environment</th>
-                <td>{{ entity.environment }}</td>
+                <td>{{ issue.environment }}</td>
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ entity.description }}</td>
+                <td>{{ issue.description }}</td>
             </tr>
             <tr>
                 <th>Original_estimate</th>
-                <td>{{ entity.originalestimate }}</td>
+                <td>{{ issue.originalestimate }}</td>
             </tr>
             <tr>
                 <th>Remaining_estimate</th>
-                <td>{{ entity.remainingestimate }}</td>
+                <td>{{ issue.remainingestimate }}</td>
             </tr>
             <tr>
                 <th>Labels</th>
-                <td>{{ entity.labels }}</td>
+                <td>{{ issue.labels }}</td>
             </tr>
         </tbody>
     </table>
@@ -55,7 +55,7 @@
         </a>
     </li>
     <li>
-        <a href="{{ path('issue_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('issue_edit', { 'id': issue.id }) }}">
             Edit
         </a>
     </li>

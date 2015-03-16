@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Priority
+ * Setting
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AppBundle\Entity\PriorityRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\SettingRepository")
  */
-class Priority
+class Setting
 {
     /**
      * @var integer
@@ -35,11 +35,14 @@ class Priority
      */
     private $shortname;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="params", type="text")
+     */
+    private $params;
 
 
-    public function __toString() {
-        return $this->name;
-    }
     /**
      * Get id
      *
@@ -54,7 +57,7 @@ class Priority
      * Set name
      *
      * @param string $name
-     * @return Priority
+     * @return Setting
      */
     public function setName($name)
     {
@@ -77,7 +80,7 @@ class Priority
      * Set shortname
      *
      * @param string $shortname
-     * @return Priority
+     * @return Setting
      */
     public function setShortname($shortname)
     {
@@ -94,5 +97,28 @@ class Priority
     public function getShortname()
     {
         return $this->shortname;
+    }
+
+    /**
+     * Set params
+     *
+     * @param string $params
+     * @return Setting
+     */
+    public function setParams($params)
+    {
+        $this->params = $params;
+
+        return $this;
+    }
+
+    /**
+     * Get params
+     *
+     * @return string 
+     */
+    public function getParams()
+    {
+        return $this->params;
     }
 }

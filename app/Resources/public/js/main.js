@@ -18,4 +18,18 @@ $(document).ready(function() {
 		    
 		});
 	})
+
+
+
+	$(".col div.status a.quick_view").click(function(e) {
+		e.preventDefault();
+		var url=$(this).attr('href');
+		$.ajax({
+			'url': url,
+			'method': 'GET'
+		}).done(function(data) {
+			$('#quick_view').html(data);
+		});
+	});
+
 });

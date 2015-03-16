@@ -1,0 +1,22 @@
+{% block body -%}
+    <div class="row">
+        <div class="col-md-8">
+            {{issue.project.name}} / <a href="{{path('issue_show', {'id':issue.id} )}}">{{issue.name}}</a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-default issue_edit" href="{{path('issue_edit', {'id':issue.id} )}}">Edit</a>
+        </div>
+    </div>
+    <div>
+        {{issue.summary}}
+    </div>
+    <div>
+        <label>{{"Remaining"|trans}}</label> {{issue.remaining}}
+    </div>
+    <h2>Detail</h2>
+     <div>
+        <label>{{"Status"|trans}}</label> <span class="label label-{{issue.status.shortname}}">{{issue.status}}</span>
+    </div>
+
+   
+{% endblock %}

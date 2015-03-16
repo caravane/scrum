@@ -36,11 +36,29 @@ class Version
      */
     private $project;
 
+   
+
+   /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="version")
+     **/
+   private $issue_version;
+
+   /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="fixVersion")
+     **/
+   private $issue_fixVersion;
+
+
 
 
     public function __toString() {
         return $this->name;
     }
+
+
+
+
+
 
     /**
      * Get id
@@ -96,5 +114,88 @@ class Version
     public function getProject()
     {
         return $this->project;
+    }
+
+
+
+
+
+
+    /**
+     * Add issue_version
+     *
+     * @param \AppBundle\Entity\Issue $issueVersion
+     * @return Version
+     */
+    public function addIssueVersion(\AppBundle\Entity\Issue $issueVersion)
+    {
+        $this->issue_version[] = $issueVersion;
+
+        return $this;
+    }
+
+    /**
+     * Remove issue_version
+     *
+     * @param \AppBundle\Entity\Issue $issueVersion
+     */
+    public function removeIssueVersion(\AppBundle\Entity\Issue $issueVersion)
+    {
+        $this->issue_version->removeElement($issueVersion);
+    }
+
+   
+   
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->issue_version = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->issue_fixVersion = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get issue_version
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIssueVersion()
+    {
+        return $this->issue_version;
+    }
+
+    /**
+     * Add issue_fixVersion
+     *
+     * @param \AppBundle\Entity\User $issueFixVersion
+     * @return Version
+     */
+    public function addIssueFixVersion(\AppBundle\Entity\User $issueFixVersion)
+    {
+        $this->issue_fixVersion[] = $issueFixVersion;
+
+        return $this;
+    }
+
+    /**
+     * Remove issue_fixVersion
+     *
+     * @param \AppBundle\Entity\User $issueFixVersion
+     */
+    public function removeIssueFixVersion(\AppBundle\Entity\User $issueFixVersion)
+    {
+        $this->issue_fixVersion->removeElement($issueFixVersion);
+    }
+
+    /**
+     * Get issue_fixVersion
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIssueFixVersion()
+    {
+        return $this->issue_fixVersion;
     }
 }

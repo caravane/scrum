@@ -36,11 +36,26 @@ class Version
      */
     private $project;
 
+   
 
+   /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="version")
+     **/
+   private $issue_version;
+
+   /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="fixVersion")
+     **/
+   private $issue_fixVersion;
 
     public function __toString() {
         return $this->name;
     }
+
+
+
+
+
 
     /**
      * Get id
@@ -97,4 +112,36 @@ class Version
     {
         return $this->project;
     }
+
+
+
+
+
+
+    /**
+     * Add issue_version
+     *
+     * @param \AppBundle\Entity\Issue $issueVersion
+     * @return Version
+     */
+    public function addIssueVersion(\AppBundle\Entity\Issue $issueVersion)
+    {
+        $this->issue_version[] = $issueVersion;
+
+        return $this;
+    }
+
+    /**
+     * Remove issue_version
+     *
+     * @param \AppBundle\Entity\Issue $issueVersion
+     */
+    public function removeIssueVersion(\AppBundle\Entity\Issue $issueVersion)
+    {
+        $this->issue_version->removeElement($issueVersion);
+    }
+
+   
+   
+
 }

@@ -45,8 +45,16 @@ class IssueType extends AbstractType
                 'class'=>'AppBundle:IssueType',
                 'required'=>true
             ))
-            ->add('version')
-            ->add('fixVersion')
+            ->add('version','entity',array(
+                'class'=>'AppBundle:Version',
+                'multiple'=>true,
+                'required'=>false
+            ))
+            ->add('fixVersion','entity',array(
+                'class'=>'AppBundle:Version',
+                'multiple'=>true,
+                'required'=>false
+            ))
             ->add('assignee')
             ->add('reporter','entity',array(
                 'class'=>'AppBundle:User',

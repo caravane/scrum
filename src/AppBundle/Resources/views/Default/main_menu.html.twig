@@ -26,7 +26,7 @@
 	            </li>
 	             {% if app.user.project is defined %}
 	            <li>
-	              <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#issueModal" {{app.user.project|length>0?'':'disabled'}} >
+	              <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#issueModal" {{ app.user.project|length>0?'':'disabled'}} >
 	                {{"Issue"|trans}}
 	              </button>
 	            </li>

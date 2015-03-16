@@ -15,11 +15,21 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('shortname')
+            ->add('name', 'text', array(
+                'required'=>true
+            ))
+            ->add('shortname', 'text', array(
+                'required'=>true
+            ))
             ->add('description')
-            ->add('user')
-            ->add('leader')
+            ->add('user', 'entity', array(
+                'class'=>"AppBundle\Entity\User",
+                'multiple'=>true
+            ))
+            ->add('leader', 'entity', array(
+                'class'=>"AppBundle\Entity\User",
+                'required'=>true
+            ))
         ;
     }
     

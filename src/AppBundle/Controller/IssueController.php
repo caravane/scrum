@@ -17,53 +17,53 @@ class IssueController extends Controller
 {
 
     /**
-     * Lists all Issue entities.
+     * Lists all Issue issues.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Issue')->findAll();
+        $issues = $em->getRepository('AppBundle:Issue')->findAll();
 
         return $this->render('AppBundle:Issue:index.html.twig', array(
-            'entities' => $entities,
+            'issues' => $issues,
         ));
     }
     /**
-     * Creates a new Issue entity.
+     * Creates a new Issue issue.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Issue();
-        $form = $this->createCreateForm($entity);
+        $issue = new Issue();
+        $form = $this->createCreateForm($issue);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
+            $em->persist($issue);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('project_show', array('id' => $entity->getProject()->getId())));
+            return $this->redirect($this->generateUrl('project_show', array('id' => $issue->getProject()->getId())));
         }
 
         return $this->render('AppBundle:Issue:new.html.twig', array(
-            'entity' => $entity,
+            'issue' => $issue,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Issue entity.
+     * Creates a form to create a Issue issue.
      *
-     * @param Issue $entity The entity
+     * @param Issue $issue The issue
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Issue $entity)
+    private function createCreateForm(Issue $issue)
     {
-        $form = $this->createForm(new IssueType(), $entity, array(
+        $form = $this->createForm(new IssueType(), $issue, array(
             'action' => $this->generateUrl('issue_create'),
             'method' => 'POST',
         ));
@@ -74,86 +74,91 @@ class IssueController extends Controller
     }
 
     /**
-     * Displays a form to create a new Issue entity.
+     * Displays a form to create a new Issue issue.
      *
      */
     public function newAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
-        $entity = new Issue();
+        $issue = new Issue();
         if($project_id=$request->request->get('pid')) {
-            echo "yes";
+
             if($project = $em->getRepository('AppBundle:Project')->find($id)) {
-                $entity->setProject($project);
+                $issue->setProject($project);
             }
         }
        
-        $form   = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($issue);
 
         return $this->render('AppBundle:Issue:new.html.twig', array(
-            'entity' => $entity,
+            'issue' => $issue,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Issue entity.
+     * Finds and displays a Issue issue.
      *
      */
-    public function showAction($id)
+    public function showAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Issue')->find($id);
+        $issue = $em->getRepository('AppBundle:Issue')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Issue entity.');
+        if (!$issue) {
+            throw $this->createNotFoundException('Unable to find Issue.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AppBundle:Issue:show.html.twig', array(
-            'entity'      => $entity,
+        $template="AppBundle:Issue:show.html.twig";
+        if($request->isXmlHttpRequest()) {
+            $template="AppBundle:Issue:show_ajax.html.twig";
+        }
+       
+
+        return $this->render($template, array(
+            'issue'      => $issue,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Issue entity.
+     * Displays a form to edit an existing Issue issue.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Issue')->find($id);
+        $issue = $em->getRepository('AppBundle:Issue')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Issue entity.');
+        if (!$issue) {
+            throw $this->createNotFoundException('Unable to find Issue issue.');
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($issue);
+    
 
         return $this->render('AppBundle:Issue:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'issue'      => $issue,
+            'edit_form'   => $editForm->createView()
         ));
     }
 
     /**
-    * Creates a form to edit a Issue entity.
+    * Creates a form to edit a Issue issue.
     *
-    * @param Issue $entity The entity
+    * @param Issue $issue The issue
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Issue $entity)
+    private function createEditForm(Issue $issue)
     {
-        $form = $this->createForm(new IssueType(), $entity, array(
-            'action' => $this->generateUrl('issue_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new IssueType(), $issue, array(
+            'action' => $this->generateUrl('issue_update', array('id' => $issue->getId())),
             'method' => 'PUT',
         ));
 
@@ -162,21 +167,21 @@ class IssueController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Issue entity.
+     * Edits an existing Issue issue.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Issue')->find($id);
+        $issue = $em->getRepository('AppBundle:Issue')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Issue entity.');
+        if (!$issue) {
+            throw $this->createNotFoundException('Unable to find Issue issue.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($issue);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -186,13 +191,13 @@ class IssueController extends Controller
         }
 
         return $this->render('AppBundle:Issue:edit.html.twig', array(
-            'entity'      => $entity,
+            'issue'      => $issue,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Issue entity.
+     * Deletes a Issue issue.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -202,13 +207,13 @@ class IssueController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Issue')->find($id);
+            $issue = $em->getRepository('AppBundle:Issue')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Issue entity.');
+            if (!$issue) {
+                throw $this->createNotFoundException('Unable to find Issue issue.');
             }
 
-            $em->remove($entity);
+            $em->remove($issue);
             $em->flush();
         }
 
@@ -216,9 +221,9 @@ class IssueController extends Controller
     }
 
     /**
-     * Creates a form to delete a Issue entity by id.
+     * Creates a form to delete a Issue issue by id.
      *
-     * @param mixed $id The entity id
+     * @param mixed $id The issue id
      *
      * @return \Symfony\Component\Form\Form The form
      */
