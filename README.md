@@ -6,8 +6,9 @@ Simple Symfony2 Scrum project management
     composer install
 
 Doctrine DB Schema:
+--
     php app/console doctrine:schema:update --force
-
+--
 
 Create admin user:
     php app/console fos:user:create
