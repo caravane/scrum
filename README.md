@@ -5,7 +5,6 @@ Simple Symfony2 Scrum project management
 #setup
     composer install
 
-
 Doctrine DB Schema:
     php app/console doctrine:schema:update --force
 
