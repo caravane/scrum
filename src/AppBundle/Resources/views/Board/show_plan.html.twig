@@ -1,0 +1,21 @@
+{% extends 'AppBundle:Board:show.html.twig' %}
+
+
+
+
+{% block view %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col">
+                <div class="status ">
+                    {% for issue in board.issues('plan') %}
+                        <li class="card {{issue.type.shortname}}" data-name="{{issue.name}}" data-id="{{issue.id}}" >
+                            <img src="" class="avatar" />
+                            <i class="fa fa-{{issue.type.shortname}}" alt="{{issue.type}}" title="{{issue.type}}"></i> <i class="fa fa-{{issue.priority.shortname}}"></i> <a href="{{path('issue_show', {'id':issue.id} )}}" class="quick_view">{{issue.name}}</a> {{issue.summary}}
+                        </li>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock view %}

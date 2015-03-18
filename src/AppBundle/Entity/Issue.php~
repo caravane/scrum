@@ -73,16 +73,24 @@ class Issue
     /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", mappedBy="issue_version")
-     * @ORM\JoinTable(name="issue_version")
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", inversedBy="issue_version")
+     * @ORM\JoinTable(
+     *     name="issue_version", 
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="version_id", referencedColumnName="id")}
+     * )
      */
     private $version;
 
    /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", mappedBy="issue_fixVersion")
-     * @ORM\JoinTable(name="issue_fixversion")
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", inversedBy="issue_fixVersion")
+     * @ORM\JoinTable(
+     *     name="issue_fixversion", 
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="version_id", referencedColumnName="id")}
+     * )
      */
     private $fixVersion;
 

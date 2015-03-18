@@ -41,14 +41,14 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
 
-    
+
 
     /**
      * Add project
@@ -76,10 +76,28 @@ class User extends BaseUser
     /**
      * Get project
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProject()
     {
         return $this->project;
     }
+
+
+
+    public function getBoard() {
+        $boards=array();
+        foreach($this->getProject() as $project) {
+
+             foreach($project->getBoard() as $board) {
+                $boards[$board->getId()]=$board;
+            }
+        }
+        return $boards;
+    }
 }
+
+
+
+
+

@@ -1,3 +1,7 @@
+app_board:
+    resource: "@AppBundle/Resources/config/routing/board.yml"
+    prefix:   /board
+
 app_priority:
     resource: "@AppBundle/Resources/config/routing/priority.yml"
     prefix:   /priority

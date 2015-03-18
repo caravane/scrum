@@ -4,6 +4,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
+
+
+
 /**
  * Project
  *
@@ -62,6 +66,10 @@ class Project
      */
     private $issues;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Board", mappedBy="project")
+     **/
+   private $board;
 
 
     public function __toString() {
@@ -263,5 +271,38 @@ class Project
     public function getShortname()
     {
         return $this->shortname;
+    }
+
+    /**
+     * Add board
+     *
+     * @param \AppBundle\Entity\Board $board
+     * @return Board
+     */
+    public function addBoard(\AppBundle\Entity\Board $board)
+    {
+        $this->board[] = $board;
+
+        return $this;
+    }
+
+    /**
+     * Remove board
+     *
+     * @param \AppBundle\Entity\Board $board
+     */
+    public function removeBoard(\AppBundle\Entity\Board $board)
+    {
+        $this->board->removeElement($board);
+    }
+
+    /**
+     * Get board
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBoard()
+    {
+        return $this->board;
     }
 }

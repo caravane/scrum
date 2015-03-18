@@ -1,9 +1,9 @@
-{% extends 'AppBundle:Project:show.html.twig' %}
+{% extends 'AppBundle:Board:show.html.twig' %}
 
 {% import _self as mac %}
 
 {% block view %}
-    {% set allIssues = project.issues %}
+    {% set allIssues = board.issues %}
         <div class="row">
             <div class="col-md-3">
                 {{ mac.col(allIssues, 'todo', 'To do') }}
@@ -23,6 +23,7 @@
 
 
 {% macro col(allIssues, type, label) %}
+
     <div class="col">
         <h3 class="status"><span class="count">{{allIssues[type] is defined? (allIssues[type]|length):'0'}}</span> {{label}}</h3>
         <div class="{{type}}  status" data-status="{{type}}">

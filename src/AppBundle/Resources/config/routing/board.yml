@@ -1,0 +1,30 @@
+board:
+    path:     /
+    defaults: { _controller: "AppBundle:Board:index" }
+
+board_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Board:show" }
+
+board_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Board:new" }
+
+board_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Board:create" }
+    methods:  POST
+
+board_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Board:edit" }
+
+board_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Board:update" }
+    methods:  [POST, PUT]
+
+board_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Board:delete" }
+    methods:  [POST, DELETE]
