@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectType;
 
+use Symfony\Component\HttpFoundation\Cookie;
+
 /**
  * Project controller.
  *
@@ -91,8 +93,18 @@ class ProjectController extends Controller
      * Finds and displays a Project entity.
      *
      */
-    public function showAction($id)
+    public function showAction(Request $request, $id)
     {
+        $project_view = "work";
+        $cookies = $request->cookies->all();
+        if(isset($cookies["project_view"])) {
+            $project_view=$cookies["project_view"]; 
+        }
+        if($request->query->get('project_view')) {
+            $project_view=$request->query->get('project_view'); 
+        }
+
+        
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:Project')->find($id);
@@ -103,10 +115,13 @@ class ProjectController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AppBundle:Project:show.html.twig', array(
+        $response =  $this->render('AppBundle:Project:show_'.$project_view.'.html.twig', array(
             'project'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'project_view' => $project_view
         ));
+        $response->headers->setCookie(new Cookie('project_view', $project_view, 0, '/'));
+        return $response;
     }
 
     /**

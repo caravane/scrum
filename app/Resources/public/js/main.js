@@ -15,21 +15,54 @@ $(document).ready(function() {
 			'url': updateUrl,
 			'method': 'POST'
 		}).done(function( msg ) {
-		    
-		});
-	})
-
-
-
-	$(".col div.status a.quick_view").click(function(e) {
-		e.preventDefault();
-		var url=$(this).attr('href');
-		$.ajax({
-			'url': url,
-			'method': 'GET'
-		}).done(function(data) {
-			$('#quick_view').html(data);
+			var quickViewUrl = ui.item.find('a.quick_view').attr('href');
+		    quick_view(quickViewUrl);
 		});
 	});
 
+
+
+	$('.card').mousedown(function() {
+		$(this).find('a.quick_view').click();
+	});
+	$(".card a.quick_view").click(function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		var quickViewUrl=$(this).attr('href');
+		quick_view(quickViewUrl);
+	});
+
+	$('a.create_issue').click(function(e) {
+		e.preventDefault();
+		modalIssue($(this).attr('href'));
+	});
+
 });
+
+
+function quick_view(url) {
+	$.ajax({
+		'url': url,
+		'method': 'GET'
+	}).done(function(data) {
+		$('#quick_view').html(data);
+		$('#quick_view a.issue_edit').click(function(e) {
+			e.preventDefault();
+			modalIssue($(this).attr('href'));
+		});
+	});
+}
+
+
+function modalIssue(url) {
+	$.ajax({
+		'url': url,
+		'method': 'GET'
+	}).done(function(data) {
+		$('#issueModal .modal-body').html(data);
+		$('#issueModal').modal()
+	});
+	
+}	
+
+	

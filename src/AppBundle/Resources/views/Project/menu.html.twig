@@ -1,0 +1,11 @@
+<div class="col-md-10">
+    <h1>{{project.name}}</h1>
+</div>
+<div class="col-md-2">
+
+	<div class="btn-group">
+		<a href="{{path('project_show', {'id':project.id,'project_view':'plan'} )}}" class="btn btn-default {{project_view=='plan'?'active':''}}">Plan</a>
+		<a href="{{path('project_show', {'id':project.id,'project_view':'work'} )}}" class="btn btn-default {{project_view=='work'?'active':''}}">Work</a>
+	</div>
+    {# <a class="btn" href="{{ path('project_edit', { 'id': project.id }) }}"> Edit </a> #}
+</div>

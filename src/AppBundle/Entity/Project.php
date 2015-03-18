@@ -230,8 +230,11 @@ class Project
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getIssues()
+    public function getIssues($type='work')
     {
+        if($type=='plan') {
+            return $this->issues;
+        }
         $issues=array();
         foreach($this->issues as $issue) {
             $issues[$issue->getStatus()->getShortname()][]=$issue;

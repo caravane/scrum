@@ -1,0 +1,39 @@
+{% extends 'AppBundle:Project:show.html.twig' %}
+
+{% import _self as mac %}
+
+{% block view %}
+        <div class="row">
+            <div class="col-md-3">
+                {{ mac.col(project, 'todo', 'To do') }}
+            </div>
+            <div class="col-md-3">
+                {{ mac.col(project, 'inprogress', 'In progress') }}
+            </div>
+            <div class="col-md-3">
+               {{ mac.col(project, 'inqualification', 'In qualification') }}
+            </div>
+            <div class="col-md-3">
+               {{ mac.col(project, 'done', 'Done') }}
+            </div>
+        </div>
+{% endblock view %}
+  
+
+
+{% macro col(project, type, label) %}
+    <div class="col">
+        <h3 class="status"><span class="count">{{project.issues[type] is defined? (project.issues[type]|length):'0'}}</span> {{label}}</h3>
+        <div class="{{type}}  status" data-status="{{type}}">
+            {% if project.issues[type] is defined %}
+                {% for issue in project.issues[type] %}
+                     <li class="card {{issue.type.shortname}}" data-name="{{issue.name}}" data-id="{{issue.id}}" >
+                        <img src="" class="avatar" />
+                        <i class="fa fa-{{issue.type.shortname}}" alt="{{issue.type}}" title="{{issue.type}}" ></i> <a href="{{path('issue_show', {'id':issue.id} )}}" class="quick_view">{{issue.name}}</a><br/>
+                        <i class="fa fa-{{issue.priority.shortname}}" alt="{{issue.priority}}" title="{{issue.priority}}" ></i>  {{issue.summary}}
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </div>
+     </div>
+{% endmacro %}

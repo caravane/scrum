@@ -21,6 +21,7 @@ class DefaultController extends Controller
 
 	public function settingsAction() {
 		$em = $this->getDoctrine()->getManager();
+		 return $this->render('AppBundle:Default:index.html.twig', array());
 
 	}
 
