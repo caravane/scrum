@@ -1,0 +1,7 @@
+services:
+    twig.extension.app:
+        class: AppBundle\Twig\AppExtension
+        arguments:
+            doctrine: "@doctrine"
+        tags:
+            - { name: twig.extension }
