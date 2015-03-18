@@ -34,6 +34,10 @@ app_project:
     resource: "@AppBundle/Resources/config/routing/project.yml"
     prefix:   /project
 
+app_user:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
 app_admin:
     resource: "@AppBundle/Resources/config/routing/app.yml"
     prefix:   /admin

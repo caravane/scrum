@@ -29,7 +29,7 @@
             {% if allIssues[type] is defined %}
                 {% for issue in allIssues[type] %}
                      <li class="card {{issue.type.shortname}}" data-name="{{issue.name}}" data-id="{{issue.id}}" >
-                        <img src="" class="avatar" />
+                        <img src="" class="avatar" alt="{{issue.assignee.username is defined ? issue.assignee.username:''}}" title="{{issue.assignee.username is defined?issue.assignee.username:''}}" />
                         <i class="fa fa-{{issue.type.shortname}}" alt="{{issue.type}}" title="{{issue.type}}" ></i> <a href="{{path('issue_show', {'id':issue.id} )}}" class="quick_view">{{issue.name}}</a><br/>
                         <i class="fa fa-{{issue.priority.shortname}}" alt="{{issue.priority}}" title="{{issue.priority}}" ></i>  {{issue.summary}}
                     </li>
