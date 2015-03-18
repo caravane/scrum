@@ -26,12 +26,34 @@
 	            </li>
 	             {% if app.user.project is defined %}
 	            <li>
-	              <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#issueModal" {{ app.user.project|length>0?'':'disabled'}} >
+	              <a class="btn btn-primary create_issue" href="{{path('issue_new')}}" {{ app.user.project|length>0?'':'disabled'}} >
 	                {{"Issue"|trans}}
-	              </button>
+	              </a>
 	            </li>
 		        {% endif %}
-		    {% endif %}
+		      {% endif %}
+          </ul>
+           <ul class="nav navbar-nav navbar-right">
+            {% if app.user %}
+              {% if is_granted('ROLE_ADMIN') %}
+                <li class="dropdown">
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-cog"></i> <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{path('project')}}">{{"Projects"|trans}}</a></li>
+                    <li><a href="{{path('app_settings')}}">{{"Settings"|trans}}</a></li>
+                  </ul>
+                </li>
+              {% endif %}
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Me <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{path('fos_user_profile_edit')}}">{{"Profile"|trans}}</a></li>
+                    <li><a href="{{path('fos_user_security_logout')}}">{{"Logout"|trans}}</a></li>
+                  </ul>
+              </li>
+            {% else %}
+              <li><a href="{{path('fos_user_security_login')}}">{{"Login"|trans}}</a></li>
+            {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>

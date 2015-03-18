@@ -30,9 +30,9 @@ app_project:
     resource: "@AppBundle/Resources/config/routing/project.yml"
     prefix:   /project
 
-app_settings:
+app_admin:
     resource: "@AppBundle/Resources/config/routing/app.yml"
-    prefix:   /app
+    prefix:   /admin
 
 app_homepage:
     path:   /

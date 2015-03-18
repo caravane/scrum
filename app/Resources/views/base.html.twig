@@ -26,26 +26,9 @@
     </div>
 
 
-{% if app.user.project is defined %}
-    <div class="modal fade" id="issueModal" tabindex="-1" role="dialog" aria-labelledby="issueModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">New isssue</h4>
-          </div>
-          <div class="modal-body">
-               {{ render(controller('AppBundle:Issue:new')) }}
-          </div>
-          <div class="modal-footer">
-
-          </div>
-        </div>
-      </div>
-    </div>
-{% endif %}
+    {% if app.user.project is defined %}
+       {% include "AppBundle:Default:modal.html.twig" %}
+    {% endif %}
     {% block javascripts %}
         {% include "javascripts.app.html.twig" %}
     {% endblock javascripts %}
