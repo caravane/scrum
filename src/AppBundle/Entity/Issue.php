@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\IssueRepository")
+ * @ORM\EntityListeners({"AppBundle\Listener\IssueListener"})
  */
 class Issue
 {
@@ -626,6 +627,7 @@ class Issue
         }
         return "Unestimated";
     }
+   
    
 
 }

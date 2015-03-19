@@ -46,3 +46,7 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+
+swiftmailer:
+    delivery_address: %mailer_default_recipient%
