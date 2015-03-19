@@ -23,4 +23,4 @@ services:
             -  { name: doctrine.entity_listener }
     app.mailer:
         class: AppBundle\Service\MailerService
-        arguments: [@doctrine.orm.entity_manager, @mailer, @security.token_storage, @templating, %mailer_send_from_email%]
+        arguments: [@doctrine.orm.entity_manager, @mailer, @security.token_storage, @templating, @simplethings_entityaudit.reader, %mailer_send_from_email%]

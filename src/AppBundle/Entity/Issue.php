@@ -32,14 +32,14 @@ class Issue
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\IssueStatus")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\IssueStatus", inversedBy="issues")
      */
     private $status;
 
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\IssueType")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\IssueType", inversedBy="issues")
      */
     private $type;
 
