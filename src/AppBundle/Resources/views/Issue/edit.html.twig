@@ -1,7 +1,60 @@
-{% extends '::base.html.twig' %}
+{#% extends '::base.html.twig' %#}
 
 {% block body -%}
+	<form name="appbundle_issue" method="post" action="{{path('issue_update', {'id':issue.id} )}}">
+		<input type="hidden" name="_method" value="PUT">
+		<div class="row">
+			<div class="col-md-12">
+
+				{{ form_row(edit_form.summary) }}
+			</div>
+			<div class="col-md-6">
+				{{ form_row(edit_form.status) }}
+				{{ form_row(edit_form.priority) }}
+			</div>
+			<div class="col-md-6">
+				{{ form_row(edit_form.type) }}
+				{{ form_row(edit_form.dueDate) }}
+			</div>
+
+			<div class="col-md-6">
+				{{ form_row(edit_form.reporter) }}
+			</div>
+			<div class="col-md-6">
+				{{ form_row(edit_form.assignee) }}
+			</div>
+
+			<div class="col-md-12">
+				{{ form_row(edit_form.component) }}
+				{{ form_row(edit_form.environment) }}
+				{{ form_row(edit_form.description) }}
+
+			</div>
 
 
-    {{ form(edit_form) }}
+			<div class="col-md-6">
+				{{ form_row(edit_form.original_estimate) }}
+			</div>
+			<div class="col-md-6">
+				{{ form_row(edit_form.remaining_estimate) }}
+			</div>
+
+			<div class="col-md-12">
+
+				{{ form_row(edit_form.labels) }}
+				{{ form_row(edit_form.version) }}
+				{{ form_row(edit_form.fixVersion) }}
+			</div>
+
+
+
+			<div class="col-md-12">
+
+
+
+
+				{{ form_rest(edit_form) }}
+			</div>
+		</div>
+	</form>
 {% endblock %}
