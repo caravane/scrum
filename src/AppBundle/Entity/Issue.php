@@ -76,7 +76,7 @@ class Issue
      *
      * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", inversedBy="issue_version")
      * @ORM\JoinTable(
-     *     name="issue_version", 
+     *     name="issue_version",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="version_id", referencedColumnName="id")}
      * )
@@ -88,7 +88,7 @@ class Issue
      *
      * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Version", inversedBy="issue_fixVersion")
      * @ORM\JoinTable(
-     *     name="issue_fixversion", 
+     *     name="issue_fixversion",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="version_id", referencedColumnName="id")}
      * )
@@ -158,7 +158,20 @@ class Issue
      */
     private $sprint;
 
-    
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Priority", inversedBy="issues")
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Priority", inversedBy="issues")
+     */
+    private $attachement;
+
 
     public function getName() {
         return $this->project->getShortname()."-".$this->getId();
@@ -173,12 +186,12 @@ class Issue
         $this->version = new \Doctrine\Common\Collections\ArrayCollection();
         $this->fixVersion = new \Doctrine\Common\Collections\ArrayCollection();
     }
-   
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -201,7 +214,7 @@ class Issue
     /**
      * Get summary
      *
-     * @return string 
+     * @return string
      */
     public function getSummary()
     {
@@ -224,7 +237,7 @@ class Issue
     /**
      * Get dueDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDueDate()
     {
@@ -247,7 +260,7 @@ class Issue
     /**
      * Get component
      *
-     * @return string 
+     * @return string
      */
     public function getComponent()
     {
@@ -270,7 +283,7 @@ class Issue
     /**
      * Get environment
      *
-     * @return string 
+     * @return string
      */
     public function getEnvironment()
     {
@@ -293,7 +306,7 @@ class Issue
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -316,7 +329,7 @@ class Issue
     /**
      * Get original_estimate
      *
-     * @return string 
+     * @return string
      */
     public function getOriginalEstimate()
     {
@@ -339,7 +352,7 @@ class Issue
     /**
      * Get remaining_estimate
      *
-     * @return string 
+     * @return string
      */
     public function getRemainingEstimate()
     {
@@ -362,7 +375,7 @@ class Issue
     /**
      * Get labels
      *
-     * @return string 
+     * @return string
      */
     public function getLabels()
     {
@@ -385,7 +398,7 @@ class Issue
     /**
      * Get project
      *
-     * @return \AppBundle\Entity\Project 
+     * @return \AppBundle\Entity\Project
      */
     public function getProject()
     {
@@ -408,7 +421,7 @@ class Issue
     /**
      * Get status
      *
-     * @return \AppBundle\Entity\IssueStatus 
+     * @return \AppBundle\Entity\IssueStatus
      */
     public function getStatus()
     {
@@ -431,7 +444,7 @@ class Issue
     /**
      * Get type
      *
-     * @return \AppBundle\Entity\IssueType 
+     * @return \AppBundle\Entity\IssueType
      */
     public function getType()
     {
@@ -454,7 +467,7 @@ class Issue
     /**
      * Get priority
      *
-     * @return \AppBundle\Entity\Priority 
+     * @return \AppBundle\Entity\Priority
      */
     public function getPriority()
     {
@@ -487,7 +500,7 @@ class Issue
     /**
      * Get version
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getVersion()
     {
@@ -520,7 +533,7 @@ class Issue
     /**
      * Get fixVersion
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFixVersion()
     {
@@ -543,7 +556,7 @@ class Issue
     /**
      * Get assignee
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getAssignee()
     {
@@ -566,7 +579,7 @@ class Issue
     /**
      * Get reporter
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getReporter()
     {
@@ -589,7 +602,7 @@ class Issue
     /**
      * Get epic
      *
-     * @return \AppBundle\Entity\Epic 
+     * @return \AppBundle\Entity\Epic
      */
     public function getEpic()
     {
@@ -612,7 +625,7 @@ class Issue
     /**
      * Get sprint
      *
-     * @return \AppBundle\Entity\Sprint 
+     * @return \AppBundle\Entity\Sprint
      */
     public function getSprint()
     {
@@ -627,7 +640,53 @@ class Issue
         }
         return "Unestimated";
     }
-   
-   
 
+
+
+
+    /**
+     * Set comment
+     *
+     * @param \AppBundle\Entity\Priority $comment
+     * @return Issue
+     */
+    public function setComment(\AppBundle\Entity\Priority $comment = null)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return \AppBundle\Entity\Priority 
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set attachement
+     *
+     * @param \AppBundle\Entity\Priority $attachement
+     * @return Issue
+     */
+    public function setAttachement(\AppBundle\Entity\Priority $attachement = null)
+    {
+        $this->attachement = $attachement;
+
+        return $this;
+    }
+
+    /**
+     * Get attachement
+     *
+     * @return \AppBundle\Entity\Priority 
+     */
+    public function getAttachement()
+    {
+        return $this->attachement;
+    }
 }
