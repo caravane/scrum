@@ -34,10 +34,6 @@ class MailerService {
 			$diff = $this->auditReader->diff('AppBundle\Entity\Issue', $ids, $oldRev, $newRev);
 		}
 
-
-
-
-//print_r($diff);
 		$template_vars= array(
 			'issue'=>$issue,
 			'diff' => $diff,
@@ -62,14 +58,14 @@ class MailerService {
 	private function sendEmail($subject, $from, $to, $template, array $template_vars) {
 
 		$message = \Swift_Message::newInstance()
-	        ->setSubject($subject)
-	        ->setFrom($from)
-	        ->setTo($to)
-	        ->setBody($this->templating->render($template, $template_vars))
-	    ;
-	    if($this->mailer->send($message)) {
-	    	echo "message sent";
-	    }
+			->setSubject($subject)
+			->setFrom($from)
+			->setTo($to)
+			->setBody($this->templating->render($template, $template_vars))
+		;
+		if($this->mailer->send($message)) {
+			echo "message sent";
+		}
 	}
 }
 
