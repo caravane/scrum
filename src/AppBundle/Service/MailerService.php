@@ -24,12 +24,18 @@ class MailerService {
 
 	public function sendUpdateIssue(Issue $issue) {
 		$newRev = $this->auditReader->getCurrentRevision(
-	        'AppBundle\Entity\Issue',
-	        $id = $issue->getId()
-	    );
-		$oldRev=$newRev-1;
-        $ids = array($issue->getId());
-        $diff = $this->auditReader->diff('AppBundle\Entity\Issue', $ids, $oldRev, $newRev);
+			'AppBundle\Entity\Issue',
+			$id = $issue->getId()
+		);
+		$diff=array();
+		if($newRev>1) {
+			$ids = array($issue->getId());
+			$oldRev=$newRev-1;
+			$diff = $this->auditReader->diff('AppBundle\Entity\Issue', $ids, $oldRev, $newRev);
+		}
+
+
+
 
 //print_r($diff);
 		$template_vars= array(

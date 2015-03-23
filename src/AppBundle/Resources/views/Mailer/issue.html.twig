@@ -1,10 +1,10 @@
-{{issue.assignee.username}} on {{issue.type}} {{issue.name}}
- 
+{{issue.assignee.username is defined? issue.assignee.username:''}} on {{issue.type}} {{issue.name}}
+
 
 
 
 Change By:	{{user.username}}
 
 {{url('issue_show' , {'id':issue.id} )}}
- 
+
 This message was sent by {{_settings.app.name}}
