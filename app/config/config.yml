@@ -74,7 +74,7 @@ assetic:
         closure:
             jar: "%kernel.root_dir%/Resources/java/compiler.jar"
         yui_css:
-            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
 
 
 # Doctrine Configuration
@@ -110,7 +110,7 @@ swiftmailer:
     encryption:     "%mailer_encryption%"
     auth_mode:     "%mailer_auth_mode%"
 
-        
+
 
 fos_user:
     db_driver: orm
